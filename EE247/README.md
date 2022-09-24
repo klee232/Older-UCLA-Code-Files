@@ -1,8 +1,10 @@
 # EE 247 Winter 2020 Quarter
 Deep Learning Course 
 ## Contents
-Homework 1-6
-Project (Regarding EEG Signal)
+1. Homework 1-6
+2. Project (Regarding EEG Signal)
 ## Language Implemented 
-Python
-Juypter Notebook
+1. Python
+2. Juypter Notebook
+## Environment of Execution
+Anaconda
