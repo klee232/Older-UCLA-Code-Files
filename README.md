@@ -10,4 +10,8 @@ For Python Reference (Mainly) or Idea Generation
 5. EE214B (2020 Spring Quarter)
 ## Languages Used
 1. Python
-2. R
+2. Jupyter Notebook
+3. R
+4. MATLAB
+## Execution Environments
+1. Anaconda
