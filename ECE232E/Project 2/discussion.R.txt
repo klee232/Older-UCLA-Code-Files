@@ -1,0 +1,39 @@
+# Title     : TODO
+# Objective : TODO
+# Created by: user
+# Created on: 4/24/20
+# install.packages("ggplot2",repos = "http://cran.us.r-project.org")
+# install.packages("igraph",repos = "http://cran.us.r-project.org")
+library(igraph)
+library(ggplot2)
+g<-make_ring(10,directed = FALSE)
+print(diameter(g))
+jpeg("plot.jpg")
+plot(degree.distribution(g))
+
+
+
+y = degree(g)
+h1 = hist(y, breaks=seq(0.0, by=1 , length.out=max(y)+2),xlab="Nodes",main="Histogram of degree distribution")
+
+df = data.frame(x=h1$mids, y=h1$density)
+fit <- nls(y ~ a*x^b, data=df, start=list(a=1,b=-2))
+print(summary(fit))
+mean(resid(fit)^2)
+mean(degree(g))
+
+
+corenode_id=10
+V(g)$vid <- seq(1,vcount(g),1)
+neigh_list <-neighbors(g,corenode_id)
+sub_graph<-induced.subgraph(g,c(corenode_id,neigh_list))
+
+
+find_embed <- function(g, core_node){
+    neighbor_list <- neighbors(g,core_node)
+    select_core_net <- induced.subgraph(g,neighbor_list)
+    adj_mat <- get.adjacency(select_core_net)
+    dat_adj_mat <- as.array(adj_mat)
+    node_embed <- colSums(dat_adj_mat)
+    return(node_embed)
+}
