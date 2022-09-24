@@ -1,0 +1,25 @@
+Please merge and replace the contents of this folder with the s5/databases folder
+Below are some of the instructions
+
+Go to matlab and run
+wrapper.m
+
+The wrapper.m is generating voicebox mfccs for clean files, you will have to change this to the fuction you want to use. More instructions in the wrapper.m file
+
+After running this script cd to the folder where features are extracted.
+while read d;do mkdir -p path/to/new/feature/folder/$(dirname "$d"); done < path/to/features.txt
+while read d;do cat $d | sed '${s/$/\t]/}' | sed '{1s/^/[\t/}' | tr ',' '\t' > path/to/new/feature/folder/"$d"; done < path/to/features.txt
+
+For example,
+After running the given version of wrapper.m do the following
+cd s5/databases/my_features/
+while read d;do mkdir -p timit_for_kaldi$(dirname "$d"); done < ../features.txt
+while read d;do cat $d | sed '${s/$/\t]/}' | sed '{1s/^/[\t/}' | tr ',' '\t' > timit_for_kaldi/"$d"; done < ../features.txt
+
+
+The features.txt is the list of all the features. An example is given in the folder. For noisy it is features_noisy.txt
+
+Then follow the rest of the steps as given in the description pdf (step onwards). If you have further questions they have been answered in the FAQ document for the project. If you still have a question, even if it is specific to you ask it on the document. If you find an answered question in the document, and you know the answer feel free to answer it.
+
+Also, if you want to understand what is happening at each step play around the scripts and open each steps' files and read them. It is not straightforward always as it is shell scripts. This document can give you a good starting point in your understanding.
+https://eleanorchodroff.com/tutorial/kaldi/training-overview.html
